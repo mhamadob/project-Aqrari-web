@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'assets/css/mystyle.css' %}?v={{ timestamp }}">
+
+<div class="container">
+    <div class="login_form">
+        <h1 class="login_text">client register form</h1>
+        <div class="subscription-input-group">
+            <form action="{% url 'register_client' %}" method="POST" >
+                {% csrf_token %}
+                {% for field in form %}
+                {{field}}
+                
+                {% endfor %}
+
+                <a href="{% url 'login' %}" class="forget">
+                    <p>allredy have an account<span style="text-decoration: underline;">   login</span></p>
+                </a>
+                <a href="{% url 'register' %}" class="forget">
+                    <p>register as service provider<span style="text-decoration: underline;">   here</span></p>
+                </a>
+                <input class="welcome-hero-btn delete_input" type="submit" value="register">
+            </form>
+    
+        </div>
+
+    </div>
+
+
+</div> 
+   
+
+ 
+{% endblock %}
