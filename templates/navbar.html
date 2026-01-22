@@ -1,0 +1,99 @@
+
+		<!--header-top start -->
+		<header id="header-top" class="header-top">
+			<ul>
+				<li>
+					<div class="header-top-left">
+						<ul>
+							<li class="select-opt">
+								<select name="language" id="language">
+									<option value="default">EN</option>
+									<option value="Bangla">BN</option>
+									<option value="Arabic">AB</option>
+								</select>
+							</li>
+							<li class="select-opt">
+								<a href="#"><span class="lnr lnr-magnifier"></span></a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				
+				<li class="head-responsive-right pull-right">
+					<div class="header-top-right">
+						<ul>
+							{% if request.user.is_authenticated %}
+							<li class="header-top-contact">
+								<a href="{% url 'logout' %}">logout</a>
+							</li>
+							{% else %}
+							<li class="header-top-contact">
+								<a href="{% url 'login' %}">login</a>
+							</li>
+							<li class="header-top-contact">
+								<a href="{% url 'register_client' %}">register</a>
+							</li>
+							{% endif %}
+						</ul>
+					</div>
+				</li>
+			</ul>
+					
+		</header><!--/.header-top-->
+		<!--header-top end -->
+
+		<!-- top-area Start -->
+		<section class="top-area">
+			<div class="header-area">
+				<!-- Start Navigation -->
+			    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+
+			        <div class="container">
+
+			            <!-- Start Header Navigation -->
+			            <div class="navbar-header">
+			                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+			                    <i class="fa fa-bars"></i>
+			                </button>
+			                <a class="navbar-brand" href="{% url 'home' %}">Aqar<span>  y</span></a>
+
+			            </div><!--/.navbar-header-->
+			            <!-- End Header Navigation -->
+
+			            <!-- Collect the nav links, forms, and other content for toggling -->
+			            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+			                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+			                    <li ><a href="{% url 'home' %}">home</a></li>
+
+								{% if request.user.is_authenticated and request.user.is_staff == 1 %}
+			                    <li ><a href="{% url 'service_provider_profile' %}">my account</a></li>
+								{% endif %}
+
+								{% if request.user.is_authenticated and request.user.is_staff == 0%}
+								<li ><a href="{% url 'client_profile' %}">my account</a></li>
+								<li ><a href="{% url 'propertys_page_NE' %}">property</a></li>
+								{% endif %}
+
+			                    <li ><a href="#explore">explore</a></li>
+			                    <li ><a href="{% url 'service_provider_page' %}">service provider page</a></li>
+
+								{% if request.user.is_authenticated == 0 %}
+			                    <li ><a href="{% url 'propertys_page_NE' %}">property</a></li>
+								{% endif %}
+
+								{% if request.user.is_authenticated and request.user.is_staff%}
+								<li ><a href="{% url 'propertys' %}">my property</a></li>
+								{% endif %}
+			                    
+			                    <li ><a href="#contact">contact</a></li>
+			                </ul><!--/.nav -->
+			            </div><!-- /.navbar-collapse -->
+			        </div><!--/.container-->
+			    </nav><!--/nav-->
+			    <!-- End Navigation -->
+			</div><!--/.header-area-->
+
+		</section><!-- /.top-area-->
+		<!-- top-area End -->
+
+
