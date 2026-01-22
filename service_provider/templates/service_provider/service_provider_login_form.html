@@ -1,0 +1,64 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'assets/css/mystyle.css' %}?v={{ timestamp }}">
+
+
+
+
+{% if page == 'login'  %}
+<div class="container">
+    <div class="login_form">
+        <h1 class="login_text">login form</h1>
+        <div class="subscription-input-group">
+            <form action="{% url 'login' %}" method="POST" >
+                {% csrf_token %}
+                <input class="subscription-input-form margin_form" type="text" name="username" placeholder="Enter Username" />
+                <input class="subscription-input-form margin_form" type="password" name="password" placeholder="Enter Password" />
+                <a href="" class="forget">
+                    <p>Did you forget your password? Don't worry, <span style="text-decoration: underline;">you can reset it here.</span></p>
+                </a>
+                <a href="{% url 'register' %}" class="forget">
+                    <p>don't have an account<span style="text-decoration: underline;">register</span></p>
+                </a>
+                <input class="welcome-hero-btn delete_input" type="submit" value="login">
+            </form>
+            
+        </div>
+        
+    </div>
+    
+    
+</div>
+{% else %}
+<div class="container">
+    <div class="login_form">
+        <h1 class="login_text">service provider register form</h1>
+        <div class="subscription-input-group">
+            <form action="{% url 'register' %}" method="POST" >
+                {% csrf_token %}
+                {% for field in form %}
+                {{field}}
+                
+                {% endfor %}
+
+                <a href="{% url 'login' %}" class="forget">
+                    <p>allredy have an account<span style="text-decoration: underline;">   login</span></p>
+                </a>
+                <a href="{% url 'register_client' %}" class="forget">
+                    <p>register as client<span style="text-decoration: underline;">   here</span></p>
+                </a>
+                <input class="welcome-hero-btn delete_input" type="submit" value="register">
+            </form>
+    
+        </div>
+
+    </div>
+
+
+</div> 
+   
+{% endif %}
+
+ 
+{% endblock %}

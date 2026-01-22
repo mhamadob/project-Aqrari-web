@@ -1,0 +1,10 @@
+import sqlite3
+import os
+DB = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'db.sqlite3')
+con = sqlite3.connect(DB)
+cur = con.cursor()
+cur.execute("DELETE FROM django_admin_log WHERE user_id NOT IN (SELECT id FROM auth_user);")
+deleted = cur.rowcount
+con.commit()
+con.close()
+print(f"Deleted {deleted} invalid rows from django_admin_log")

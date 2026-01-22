@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'assets/css/mystyle.css' %}">
+
+<div class="container">
+    <div class="login_form">
+        <h1 class="login_text">update profile</h1>
+        <div class="subscription-input-group">
+            <form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                {{field}}
+                {% endfor %}
+                <input class="welcome-hero-btn delete_input" type="submit" value="save">
+            </form>
+    
+        </div>
+
+    </div>
+
+
+</div> 
+{% endblock %}

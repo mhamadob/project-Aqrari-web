@@ -1,0 +1,97 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <!--
+    <div class="header-top">
+        <div class="header-top-left">
+
+        </div>
+        <div class="head-responsive-right pull-right">
+            <div class="header-top-right" style="margin-right: 20px; margin-top: 40px ;">
+                <a href="">
+                    add service_provider
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-add" viewBox="0 0 16 16">
+                        <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h4a.5.5 0 1 0 0-1h-4a.5.5 0 0 1-.5-.5V7.207l5-5 6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+                        <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 1 0 1 0v-1h1a.5.5 0 1 0 0-1h-1v-1a.5.5 0 0 0-.5-.5"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    -->
+    <div class="explore-content">
+        <div class="row">
+            {% for service_provider in service_provider %}
+            <div class="col-md-4 col-sm-6 " >
+                <div class="single-explore-item ">
+                    <div class="single-explore-img">
+                        {% if service_provider.service_provider_image %}
+                        <img src="{{ service_provider.service_provider_image.url }}"  alt="explore image">
+                        {% endif %}
+                        <div class="single-explore-img-info">
+                            <div class="single-explore-image-icon-box">
+                                <ul>
+                                    <li>
+                                        <div class="single-explore-image-icon">
+                                            <a href="" style="color: white;"><i class="fa fa-arrows-alt" h ></i></a>
+                                            
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-explore-txt bg-theme-5">
+                        <h2><a href="#">{{service_provider.name}}</a></h2>
+                        <p class="explore-rating-price">
+                            <span class="explore-price" style="color: black;">the phone number:{{service_provider.phone}}</span>
+                            <span class="explore-price-box">
+                                <span class="explore-price">experience years:{{service_provider.experience_years}} </span>
+                            </span>
+                             <a href="#">destination</a>
+                        </p>
+                        <div class="explore-person" style="padding-bottom: 10px;">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p>
+                                        {{service_provider.short_intro|slice:":80" }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="explore-person" style="padding-bottom: 10px;">
+                            <div class="row">
+                                <div class="col-sm-12 ">
+                                    <p>
+                                        {{service_provider.bio|slice:":80" }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="explore-open-close-part">
+                            <div class="delete_sub">
+                                <div class="col-sm-5 ">
+                                    {% if service_provider.status == "Active" %}
+                                        <button class="close-btn open-btn " onclick="window.location.href='#'">Active</button>
+                                    {% elif service_provider.status == "Inactive" %}
+                                        <button class="close-btn avative" style="color: #3197f6;" onclick="window.location.href='#'">Inactive</button>
+                                    {% elif service_provider.status == "Suspended" %}
+                                        <button class="close-btn " onclick="window.location.href='#'">Suspended</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
